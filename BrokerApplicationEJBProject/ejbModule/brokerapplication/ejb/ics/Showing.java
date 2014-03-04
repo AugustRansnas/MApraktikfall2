@@ -2,30 +2,15 @@ package brokerapplication.ejb.ics;
 
 import java.io.Serializable;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
 @Entity
 public class Showing implements Serializable {
 	
-	private int objNr;
-	private String buyerSsnr;
+	@EmbeddedId
+	private ShowingId showingId;
 	private String showingDate;
-
-	public int getObjNr() {
-		return objNr;
-	}
-
-	public void setObjNr(int objNr) {
-		this.objNr = objNr;
-	}
-
-	public String getBuyerSsnr() {
-		return buyerSsnr;
-	}
-
-	public void setBuyerSsnr(String buyerSsnr) {
-		this.buyerSsnr = buyerSsnr;
-	}
 
 	public String getShowingDate() {
 		return showingDate;
@@ -33,5 +18,13 @@ public class Showing implements Serializable {
 
 	public void setShowingDate(String showingDate) {
 		this.showingDate = showingDate;
+	}
+
+	public ShowingId getShowingId() {
+		return showingId;
+	}
+
+	public void setShowingId(ShowingId showingId) {
+		this.showingId = showingId;
 	}
 }
