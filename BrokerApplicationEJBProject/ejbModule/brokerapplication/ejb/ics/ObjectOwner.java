@@ -1,21 +1,28 @@
 package brokerapplication.ejb.ics;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "ObjectOwner")
 public class ObjectOwner {
-	
+
 	private String ownerSsnr;
 	private String name;
 	private String phoneNr;
 	private String email;
+	private Set<RealEstateObject> realEstateObjects; // Object owner can have
+														// many Real Estate
+														// Objects
 
 	@Id
-	@Column(name="ownerSsnr")
+	@Column(name = "ownerSsnr")
 	public String getOwnerSsnr() {
 		return ownerSsnr;
 	}
@@ -24,7 +31,7 @@ public class ObjectOwner {
 		this.ownerSsnr = ownerSsnr;
 	}
 
-	@Column(name="name")
+	@Column(name = "name")
 	public String getName() {
 		return name;
 	}
@@ -33,7 +40,7 @@ public class ObjectOwner {
 		this.name = name;
 	}
 
-	@Column(name="phoneNr")
+	@Column(name = "phoneNr")
 	public String getPhoneNr() {
 		return phoneNr;
 	}
@@ -42,12 +49,21 @@ public class ObjectOwner {
 		this.phoneNr = phoneNr;
 	}
 
-	@Column(name="email")
+	@Column(name = "email")
 	public String getEmail() {
 		return email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	@OneToMany(mappedBy = "objectOwner", fetch = FetchType.EAGER)
+	public Set<RealEstateObject> getRealEstateObjects() {
+		return realEstateObjects;
+	}
+
+	public void setRealEstateObjects(Set<RealEstateObject> realEstateObjects) {
+		this.realEstateObjects = realEstateObjects;
 	}
 }

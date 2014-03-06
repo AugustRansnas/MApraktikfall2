@@ -3,8 +3,12 @@ package brokerapplication.ejb.ics;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "RealEstateObject")
 public class RealEstateObject {
 
 	private int objNr;
@@ -16,7 +20,7 @@ public class RealEstateObject {
 	private String objUnitType;
 	private String objInfo;
 	private String brokerSsnr;
-	private String ownerSsnr;
+	private ObjectOwner objectOwner; // Can only have one objectOwner
 
 	// private byte[] image;
 
@@ -30,7 +34,7 @@ public class RealEstateObject {
 		this.objNr = objNr;
 	}
 
-	@Column(name="objAddress")
+	@Column(name = "objAddress")
 	public String getObjAddress() {
 		return objAddress;
 	}
@@ -39,7 +43,7 @@ public class RealEstateObject {
 		this.objAddress = objAddress;
 	}
 
-	@Column(name="objCity")
+	@Column(name = "objCity")
 	public String getObjCity() {
 		return objCity;
 	}
@@ -48,7 +52,7 @@ public class RealEstateObject {
 		this.objCity = objCity;
 	}
 
-	@Column(name="objPrice")
+	@Column(name = "objPrice")
 	public int getObjPrice() {
 		return objPrice;
 	}
@@ -57,7 +61,7 @@ public class RealEstateObject {
 		this.objPrice = objPrice;
 	}
 
-	@Column(name="objArea")
+	@Column(name = "objArea")
 	public int getObjArea() {
 		return objArea;
 	}
@@ -66,7 +70,7 @@ public class RealEstateObject {
 		this.objArea = objArea;
 	}
 
-	@Column(name="objRooms")
+	@Column(name = "objRooms")
 	public String getObjRooms() {
 		return objRooms;
 	}
@@ -75,7 +79,7 @@ public class RealEstateObject {
 		this.objRooms = objRooms;
 	}
 
-	@Column(name="objUnitType")
+	@Column(name = "objUnitType")
 	public String getObjUnitType() {
 		return objUnitType;
 	}
@@ -84,7 +88,7 @@ public class RealEstateObject {
 		this.objUnitType = objUnitType;
 	}
 
-	@Column(name="objInfo")
+	@Column(name = "objInfo")
 	public String getObjInfo() {
 		return objInfo;
 	}
@@ -93,7 +97,7 @@ public class RealEstateObject {
 		this.objInfo = objInfo;
 	}
 
-	@Column(name="brokerSsnr")
+	@Column(name = "brokerSsnr")
 	public String getBrokerSsnr() {
 		return brokerSsnr;
 	}
@@ -102,12 +106,23 @@ public class RealEstateObject {
 		this.brokerSsnr = brokerSsnr;
 	}
 
-	@Column(name="ownerSsnr")
+	/* ska ej vara med
+	@Column(name = "ownerSsnr")
 	public String getOwnerSsnr() {
 		return ownerSsnr;
 	}
 
 	public void setOwnerSsnr(String ownerSsnr) {
 		this.ownerSsnr = ownerSsnr;
+	}*/
+
+	@ManyToOne
+	@JoinColumn(name = "ownerSsnr", referencedColumnName = "ownerSsnr")
+	public ObjectOwner getObjectOwner() {
+		return objectOwner;
+	}
+
+	public void setObjectOwner(ObjectOwner objectOwner) {
+		this.objectOwner = objectOwner;
 	}
 }
