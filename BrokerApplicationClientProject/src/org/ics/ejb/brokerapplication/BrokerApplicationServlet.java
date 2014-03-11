@@ -3,6 +3,7 @@ package org.ics.ejb.brokerapplication;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Array;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -46,7 +47,7 @@ public class BrokerApplicationServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 
 		out.println("<!DOCTYPE html><html><head>");
-		out.println("<title>Lab1</title>");
+		out.println("<title>Maklarfirman Webpage</title>");
 		out.println("<meta charset=\"ISO-8859-1\">");
 		out.println("</head><body>");
 
@@ -100,32 +101,19 @@ public class BrokerApplicationServlet extends HttpServlet {
 		//facade.createRealEstateObject(reo);
 		
 		RealEstateObject reo2 = facade.findRealEstateObjectByObjNr(2);
-		
+			
+		//Hämta en ägares alla objekt
 		ObjectOwner oo2 = facade.findObjectOwnerByOwnerSsnr("3");
-		
-		Set<RealEstateObject> realEstateObjects = oo2.getRealEstateObjects();
-		
-		
-		Object[] ourArray = realEstateObjects.toArray();
-		
-		for(int i = 0; i < ourArray.length; i++){
-			out.print("<p>Vår loop:  " + ourArray[i].toString() + " </p>");
+		Set<RealEstateObject> realEstateObjects = oo2.getRealEstateObjects();		
+		Object[] realEstateObjectsArray = realEstateObjects.toArray();
+		for(int i = 0; i < realEstateObjects.size(); i++){
+			RealEstateObject tmp = (RealEstateObject) realEstateObjectsArray[i];
+			out.print("<p>Vår loop objnr:  " + tmp.getObjNr() + " </p>");
+			out.print("<p>Vår loop adress:  " + tmp.getObjAddress() + " </p>");
 		}
 		
-		Iterator<RealEstateObject> iterator = realEstateObjects.iterator();
 		
-		
-		boolean realEstateObjectNr = realEstateObjects.isEmpty();
-		
-		out.print("<p>Storleken på set: " + realEstateObjects.size() + " </p>");
-		
-		out.print("<p> Objekt med objektnummer 2 har ägare med ägarenummer: " + reo.getObjectOwner().getName() +  " </p>");
-		
-		
-		
-		
-		
-		
+
 
 		out.println("</body></html>");
 
