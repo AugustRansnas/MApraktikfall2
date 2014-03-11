@@ -1,14 +1,18 @@
 package brokerapplication.ejb.ics;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "RealEstateBroker")
 public class RealEstateBroker {
-	
+
 	private String brokerSsnr;
 	private String name;
 	private String brokerAddress;
@@ -16,9 +20,12 @@ public class RealEstateBroker {
 	private String phoneNr;
 	private String email;
 	private String pw;
+	private Set<RealEstateObject> realEstateObjects; // RealEstateBroker can be
+														// responsible for many
+														// Objects
 
-	@Id 
-	@Column(name="brokerSsnr")
+	@Id
+	@Column(name = "brokerSsnr")
 	public String getBrokerSsnr() {
 		return brokerSsnr;
 	}
@@ -27,7 +34,7 @@ public class RealEstateBroker {
 		this.brokerSsnr = brokerSsnr;
 	}
 
-	@Column(name="name")
+	@Column(name = "name")
 	public String getName() {
 		return name;
 	}
@@ -36,7 +43,7 @@ public class RealEstateBroker {
 		this.name = name;
 	}
 
-	@Column(name="brokerAddress")
+	@Column(name = "brokerAddress")
 	public String getBrokerAddress() {
 		return brokerAddress;
 	}
@@ -45,7 +52,7 @@ public class RealEstateBroker {
 		this.brokerAddress = brokerAddress;
 	}
 
-	@Column(name="city")
+	@Column(name = "city")
 	public String getCity() {
 		return city;
 	}
@@ -54,7 +61,7 @@ public class RealEstateBroker {
 		this.city = city;
 	}
 
-	@Column(name="phoneNr")
+	@Column(name = "phoneNr")
 	public String getPhoneNr() {
 		return phoneNr;
 	}
@@ -63,7 +70,7 @@ public class RealEstateBroker {
 		this.phoneNr = phoneNr;
 	}
 
-	@Column(name="email")
+	@Column(name = "email")
 	public String getEmail() {
 		return email;
 	}
@@ -72,12 +79,21 @@ public class RealEstateBroker {
 		this.email = email;
 	}
 
-	@Column(name="pw")
+	@Column(name = "pw")
 	public String getPw() {
 		return pw;
 	}
 
 	public void setPw(String pw) {
 		this.pw = pw;
+	}
+	
+	@OneToMany(mappedBy ="realEstateBroker", fetch = FetchType.EAGER)
+	public Set<RealEstateObject> getRealEstateObjects(){
+		return realEstateObjects;
+	}
+	
+	public void setRealEstateObjects(Set<RealEstateObject> realEstateObjects) {
+		this.realEstateObjects = realEstateObjects;
 	}
 }

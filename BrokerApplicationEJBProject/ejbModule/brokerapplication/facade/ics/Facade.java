@@ -4,8 +4,10 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import brokerapplication.eao.ics.ObjectOwnerEAOLocal;
+import brokerapplication.eao.ics.RealEstateBrokerEAOLocal;
 import brokerapplication.eao.ics.RealEstateObjectEAOLocal;
 import brokerapplication.ejb.ics.ObjectOwner;
+import brokerapplication.ejb.ics.RealEstateBroker;
 import brokerapplication.ejb.ics.RealEstateObject;
 
 /**
@@ -18,6 +20,8 @@ public class Facade implements FacadeLocal {
 	private ObjectOwnerEAOLocal objectOwnerEAO;
 	@EJB
 	private RealEstateObjectEAOLocal realEstateObjectEAO;
+	@EJB
+	private RealEstateBrokerEAOLocal realEstateBrokerEAO;
 
 	/**
 	 * Default constructor.
@@ -60,5 +64,22 @@ public class Facade implements FacadeLocal {
 
 	public void deleteRealEstateObject(int objNr) {
 		realEstateObjectEAO.deleteRealEstateObject(objNr);
+	}
+
+	//RealEstateBroker
+	public RealEstateBroker findRealEstateBrokerByBrokerSsnr(String brokerSsnr) {
+		return realEstateBrokerEAO.findRealEstateBrokerByBrokerSsnr(brokerSsnr);
+	}
+
+	public RealEstateBroker createRealEstateBroker(RealEstateBroker reb) {
+		return realEstateBrokerEAO.createRealEstateBroker(reb);
+	}
+
+	public RealEstateBroker updateRealEstateBroker(RealEstateBroker reb) {
+		return realEstateBrokerEAO.updateRealEstateBroker(reb);
+	}
+
+	public void deleteRealEstateBroker(String brokerSsnr) {
+		realEstateBrokerEAO.deleteRealEstateBroker(brokerSsnr);
 	}
 }

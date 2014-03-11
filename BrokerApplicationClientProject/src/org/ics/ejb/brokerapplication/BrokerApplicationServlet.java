@@ -2,9 +2,6 @@ package org.ics.ejb.brokerapplication;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Array;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Set;
 
 import javax.ejb.EJB;
@@ -15,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import brokerapplication.ejb.ics.ObjectOwner;
+import brokerapplication.ejb.ics.RealEstateBroker;
 import brokerapplication.ejb.ics.RealEstateObject;
 import brokerapplication.facade.ics.FacadeLocal;
 
@@ -26,7 +24,7 @@ public class BrokerApplicationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@EJB
-	FacadeLocal facade;	
+	FacadeLocal facade;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -51,70 +49,63 @@ public class BrokerApplicationServlet extends HttpServlet {
 		out.println("<meta charset=\"ISO-8859-1\">");
 		out.println("</head><body>");
 
-		out.println("<h2>ObjectOwner</h2>");
+		out.println("<h2>Skapa RealEstateBroker</h2>");
 
-		ObjectOwner objectOwner = facade.findObjectOwnerByOwnerSsnr("123");
+		RealEstateBroker reb = new RealEstateBroker();
+		reb.setBrokerAddress("Sankt Månsgatan 23");
+		reb.setBrokerSsnr("1");
+		reb.setCity("Lund");
+		reb.setEmail("marcus.jacobsson@hotmail.com");
+		reb.setName("Marcus Jacobsson");
+		reb.setPhoneNr("0723726326");
+		reb.setPw("password");
 
-		out.print("<p> Name: " + objectOwner.getName()+"</p>");
-		out.print("<p> Email: " + objectOwner.getEmail()+"</p>");
-		out.print("<p> Phone number: " + objectOwner.getPhoneNr() + " </p>");
-		
-		out.println("<h2>RealEstateObject</h2>");
-		
-		RealEstateObject realEstateObject = facade.findRealEstateObjectByObjNr(1);
-		
-		out.print("<p> Object number: " + realEstateObject.getObjNr()+"</p>");
-		out.print("<p> Object address: " + realEstateObject.getObjAddress()+"</p>");
-		out.print("<p> Object city: " + realEstateObject.getObjCity() + " </p>");
-		out.print("<p> Object price: " + realEstateObject.getObjPrice()+"</p>");
-		out.print("<p> Object area: " + realEstateObject.getObjArea()+"</p>");
-		out.print("<p> Object rooms: " + realEstateObject.getObjRooms() + " </p>");
-		out.print("<p> Object unit type: " + realEstateObject.getObjUnitType()+"</p>");
-		out.print("<p> Object info: " + realEstateObject.getObjInfo()+"</p>");
-		out.print("<p> Object broker ssnr (ej implementerad ännu): " + " </p>");
-		out.print("<p> Object owner ssnr (ej implementerad ännu): " + " </p>");
-		out.print("<p> Object image (ej implementerad ännu): " + " </p>");
-		
-		out.println("<h2>Skapa object och ägare</h2>");
-		
+		// facade.createRealEstateBroker(reb);
+
+		RealEstateBroker reb1 = facade.findRealEstateBrokerByBrokerSsnr("1");
+
+		out.print("<p>Skapade mäklare:  " + reb1.getName() + " </p>");
+		out.print("<p>Adress:  " + reb1.getBrokerAddress() + " </p>");
+		out.print("<p>Telnr:  " + reb1.getPhoneNr() + " </p>");
+
+		out.println("<h2>Skapa objectägare</h2>");
+
 		ObjectOwner oo = new ObjectOwner();
-		
+
 		oo.setOwnerSsnr("3");
 		oo.setEmail("email");
-		oo.setName("name");		
+		oo.setName("name");
 		oo.setPhoneNr("123");
-		
+
 		//facade.createObjectOwner(oo);
-								
+		ObjectOwner oo1 = facade.findObjectOwnerByOwnerSsnr("3");
 		
+		out.print("<p>Skapade ägare:  " + oo1.getName() + " </p>");
+		out.print("<p>Email:  " + oo1.getEmail() + " </p>");
+		out.print("<p>Telnr:  " + oo1.getPhoneNr() + " </p>");
+		
+
+		out.println("<h2>RealEstateObject</h2>");
+
 		RealEstateObject reo = new RealEstateObject();
-		reo.setObjNr(2);
-		reo.setObjAddress("address");
-		reo.setBrokerSsnr("1");
+		reo.setObjNr(1);
+		reo.setObjAddress("Objekts adress");
 		reo.setObjArea(100);
-		reo.setObjCity("city");
+		reo.setObjCity("Objekts stad");
 		reo.setObjInfo("inf");
 		reo.setObjPrice(1000);
 		reo.setObjRooms("2");
 		reo.setObjUnitType("hus");
 		reo.setObjectOwner(facade.findObjectOwnerByOwnerSsnr("3"));
+		reo.setRealEstateBroker(facade.findRealEstateBrokerByBrokerSsnr("1"));
+
 		//facade.createRealEstateObject(reo);
+		RealEstateObject reo1 = facade.findRealEstateObjectByObjNr(1);
 		
-		RealEstateObject reo2 = facade.findRealEstateObjectByObjNr(2);
-			
-		//Hämta en ägares alla objekt
-		ObjectOwner oo2 = facade.findObjectOwnerByOwnerSsnr("3");
-		Set<RealEstateObject> realEstateObjects = oo2.getRealEstateObjects();		
-		Object[] realEstateObjectsArray = realEstateObjects.toArray();
-		for(int i = 0; i < realEstateObjects.size(); i++){
-			RealEstateObject tmp = (RealEstateObject) realEstateObjectsArray[i];
-			out.print("<p>Vår loop objnr:  " + tmp.getObjNr() + " </p>");
-			out.print("<p>Vår loop adress:  " + tmp.getObjAddress() + " </p>");
-		}
+		out.print("<p>Skapade objekt:  " + reo1.getObjAddress() + " </p>");
+		out.print("<p>Stad:  " + reo1.getObjCity() + " </p>");
+		out.print("<p>Objektnummer:  " + reo.getObjNr() + " </p>");
 		
-		
-
-
 		out.println("</body></html>");
 
 	}

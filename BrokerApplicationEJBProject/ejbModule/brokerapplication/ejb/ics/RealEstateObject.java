@@ -19,8 +19,8 @@ public class RealEstateObject {
 	private String objRooms;
 	private String objUnitType;
 	private String objInfo;
-	private String brokerSsnr;
 	private ObjectOwner objectOwner; // Can only have one objectOwner
+	private RealEstateBroker realEstateBroker; // Can only have one responsible Broker
 
 	// private byte[] image;
 
@@ -96,7 +96,8 @@ public class RealEstateObject {
 	public void setObjInfo(String objInfo) {
 		this.objInfo = objInfo;
 	}
-
+	
+	/*	ska ej vara med 
 	@Column(name = "brokerSsnr")
 	public String getBrokerSsnr() {
 		return brokerSsnr;
@@ -104,7 +105,7 @@ public class RealEstateObject {
 
 	public void setBrokerSsnr(String brokerSsnr) {
 		this.brokerSsnr = brokerSsnr;
-	}
+	} */
 
 	/* ska ej vara med
 	@Column(name = "ownerSsnr")
@@ -125,4 +126,15 @@ public class RealEstateObject {
 	public void setObjectOwner(ObjectOwner objectOwner) {
 		this.objectOwner = objectOwner;
 	}
+	
+	@ManyToOne
+	@JoinColumn(name = "brokerSsnr", referencedColumnName = "brokerSsnr")
+	public RealEstateBroker getRealEstateBroker(){
+		return realEstateBroker;
+	}
+	
+	public void setRealEstateBroker(RealEstateBroker reb){
+		this.realEstateBroker = reb;
+	}
+	
 }

@@ -3,6 +3,7 @@ package brokerapplication.facade.ics;
 import javax.ejb.Local;
 
 import brokerapplication.ejb.ics.ObjectOwner;
+import brokerapplication.ejb.ics.RealEstateBroker;
 import brokerapplication.ejb.ics.RealEstateObject;
 
 @Local
@@ -26,4 +27,13 @@ public interface FacadeLocal {
 			RealEstateObject realEstateObject);
 
 	public void deleteRealEstateObject(int objNr);
+
+	// RealEstateBroker
+	public RealEstateBroker findRealEstateBrokerByBrokerSsnr(String brokerSsnr);
+
+	public RealEstateBroker createRealEstateBroker(RealEstateBroker reb);
+
+	public RealEstateBroker updateRealEstateBroker(RealEstateBroker reb);
+
+	public void deleteRealEstateBroker(String brokerSsnr);
 }
