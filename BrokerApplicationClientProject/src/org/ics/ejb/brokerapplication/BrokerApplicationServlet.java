@@ -52,15 +52,16 @@ public class BrokerApplicationServlet extends HttpServlet {
 		out.println("<h2>Skapa RealEstateBroker</h2>");
 
 		RealEstateBroker reb = new RealEstateBroker();
-		reb.setBrokerAddress("Sankt Månsgatan 23");
-		reb.setBrokerSsnr("1");
-		reb.setCity("Lund");
-		reb.setEmail("marcus.jacobsson@hotmail.com");
-		reb.setName("Marcus Jacobsson");
+		reb.setBrokerAddress("Malmövägen 11");
+		reb.setBrokerSsnr("2");
+		reb.setCity("Eslö");
+		reb.setEmail("andreas.andreasson@hotmail.com");
+		reb.setName("Andreas Andreasson");
 		reb.setPhoneNr("0723726326");
 		reb.setPw("password");
 
-		// facade.createRealEstateBroker(reb);
+		//facade.createRealEstateBroker(reb);
+	
 
 		RealEstateBroker reb1 = facade.findRealEstateBrokerByBrokerSsnr("1");
 

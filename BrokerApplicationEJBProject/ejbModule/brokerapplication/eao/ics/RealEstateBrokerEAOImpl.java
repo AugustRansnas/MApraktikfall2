@@ -2,6 +2,7 @@ package brokerapplication.eao.ics;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.OptimisticLockException;
 import javax.persistence.PersistenceContext;
 
 import brokerapplication.ejb.ics.RealEstateBroker;
@@ -32,7 +33,7 @@ public class RealEstateBrokerEAOImpl implements RealEstateBrokerEAOLocal {
 
 	public RealEstateBroker updateRealEstateBroker(RealEstateBroker reb) {
 		em.merge(reb);
-		return reb;
+		return reb;	
 	}
 
 	public void deleteRealEstateBroker(String brokerSsnr) {

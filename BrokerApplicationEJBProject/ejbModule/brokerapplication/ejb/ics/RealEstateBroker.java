@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 @Entity
 @Table(name = "RealEstateBroker")
@@ -87,13 +88,14 @@ public class RealEstateBroker {
 	public void setPw(String pw) {
 		this.pw = pw;
 	}
-	
-	@OneToMany(mappedBy ="realEstateBroker", fetch = FetchType.EAGER)
-	public Set<RealEstateObject> getRealEstateObjects(){
+
+	@OneToMany(mappedBy = "realEstateBroker", fetch = FetchType.EAGER)
+	public Set<RealEstateObject> getRealEstateObjects() {
 		return realEstateObjects;
 	}
-	
+
 	public void setRealEstateObjects(Set<RealEstateObject> realEstateObjects) {
 		this.realEstateObjects = realEstateObjects;
 	}
+
 }
