@@ -18,6 +18,14 @@ public interface FacadeLocal {
 	public ObjectOwner updateObjectOwner(ObjectOwner objectOwner);
 
 	public void deleteObjectOwner(String ownerSsnr);
+	
+	public List<ObjectOwner> findAllObjectOwner();
+
+	public List<ObjectOwner> findObjectOwnerByName(String name);
+
+	public List<ObjectOwner> findObjectOwnerByPhoneNr(String phoneNr);
+
+	public List<ObjectOwner> findObjectOwnerByEmail(String email);
 
 	// RealEstateObject
 	public RealEstateObject findRealEstateObjectByObjNr(int objNr);
@@ -37,6 +45,8 @@ public interface FacadeLocal {
 	public List<RealEstateObject> findByAreaRealEstateObjects(int objArea);
 	public List<RealEstateObject> findByRoomsRealEstateObjects(String objRooms);
 	public List<RealEstateObject> findByUnitTypeRealEstateObjects(String objUnitType);
+	
+	
 
 	// RealEstateBroker
 	public RealEstateBroker findRealEstateBrokerByBrokerSsnr(String brokerSsnr);
@@ -48,4 +58,16 @@ public interface FacadeLocal {
 	public void deleteRealEstateBroker(String brokerSsnr);
 	
 	
+
+	public List<RealEstateBroker> findAllRealEstateBrokers();
+
+	public List<RealEstateBroker> findRealEstateBrokersByName(String name);
+
+	public List<RealEstateBroker> findRealEstateBrokersByAddress(String address);
+
+	public List<RealEstateBroker> findRealEstateBrokersByCity(String city);
+
+	public List<RealEstateBroker> findRealEstateBrokersByPhoneNr(String phoneNr);
+
+	public List<RealEstateBroker> findRealEstateBrokersByEmail(String email);
 }

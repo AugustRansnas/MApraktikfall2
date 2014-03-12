@@ -24,6 +24,8 @@ public class Facade implements FacadeLocal {
 	private RealEstateObjectEAOLocal realEstateObjectEAO;
 	@EJB
 	private RealEstateBrokerEAOLocal realEstateBrokerEAO;
+	@EJB
+	private ObjectOwnerEAOLocal ObjectOwnerEAO;
 
 	/**
 	 * Default constructor.
@@ -47,6 +49,22 @@ public class Facade implements FacadeLocal {
 
 	public void deleteObjectOwner(String ownerSsnr) {
 		objectOwnerEAO.deleteObjectOwner(ownerSsnr);
+	}
+
+	public List<ObjectOwner> findAllObjectOwner() {
+		return ObjectOwnerEAO.findAllObjectOwner();
+	}
+
+	public List<ObjectOwner> findObjectOwnerByName(String name) {
+		return ObjectOwnerEAO.findByName(name);
+	}
+
+	public List<ObjectOwner> findObjectOwnerByPhoneNr(String phoneNr) {
+		return ObjectOwnerEAO.findByPhoneNr(phoneNr);
+	}
+
+	public List<ObjectOwner> findObjectOwnerByEmail(String email) {
+		return ObjectOwnerEAO.findByEmail(email);
 	}
 
 	// RealEstateObject
@@ -103,7 +121,7 @@ public class Facade implements FacadeLocal {
 		return realEstateObjectEAO.findByUnitTypeRealEstateObjects(objUnitType);
 	}
 
-	//RealEstateBroker
+	// RealEstateBroker
 	public RealEstateBroker findRealEstateBrokerByBrokerSsnr(String brokerSsnr) {
 		return realEstateBrokerEAO.findRealEstateBrokerByBrokerSsnr(brokerSsnr);
 	}
@@ -120,5 +138,28 @@ public class Facade implements FacadeLocal {
 		realEstateBrokerEAO.deleteRealEstateBroker(brokerSsnr);
 	}
 
-	
+	public List<RealEstateBroker> findAllRealEstateBrokers() {
+		return realEstateBrokerEAO.findAllRealEstateBrokers();
+	}
+
+	public List<RealEstateBroker> findRealEstateBrokersByName(String name) {
+		return realEstateBrokerEAO.findRealEstateBrokersByName(name);
+	}
+
+	public List<RealEstateBroker> findRealEstateBrokersByAddress(String address) {
+		return realEstateBrokerEAO.findRealEstateBrokersByAddress(address);
+	}
+
+	public List<RealEstateBroker> findRealEstateBrokersByCity(String city) {
+		return realEstateBrokerEAO.findRealEstateBrokersByCity(city);
+	}
+
+	public List<RealEstateBroker> findRealEstateBrokersByPhoneNr(String phoneNr) {
+		return realEstateBrokerEAO.findRealEstateBrokersByPhoneNr(phoneNr);
+	}
+
+	public List<RealEstateBroker> findRealEstateBrokersByEmail(String email) {
+		return realEstateBrokerEAO.findRealEstateBrokersByEmail(email);
+	}
+
 }

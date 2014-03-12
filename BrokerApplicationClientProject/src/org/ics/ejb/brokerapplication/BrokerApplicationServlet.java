@@ -2,7 +2,7 @@ package org.ics.ejb.brokerapplication;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Set;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -106,6 +106,19 @@ public class BrokerApplicationServlet extends HttpServlet {
 		out.print("<p>Skapade objekt:  " + reo1.getObjAddress() + " </p>");
 		out.print("<p>Stad:  " + reo1.getObjCity() + " </p>");
 		out.print("<p>Objektnummer:  " + reo.getObjNr() + " </p>");
+		
+		out.println("<h2>Testa queries</h2>");
+		
+		//Hämta alla Brokers 
+		 List<RealEstateBroker> allRealEstateBrokers = facade.findAllRealEstateBrokers();
+		 //Skriv ut alla 
+		 for (RealEstateBroker reb2 : allRealEstateBrokers) { 
+		 out.println("<h4>Hittade: "+ reb.getClass().getSimpleName()); 
+		 out.println(" Id: "+ reb2.getBrokerSsnr()); 
+		 out.println(" - "+ reb2.getName()); 
+		 out.println(" - "+ reb2.getBrokerAddress()); 
+		 out.println(" - "+ reb2.getCity() +"</h4>"); 
+		 } 
 		
 		out.println("</body></html>");
 
