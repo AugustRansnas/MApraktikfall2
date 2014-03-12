@@ -6,11 +6,19 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Version;
 
 @Entity
+@NamedQueries({
+		@NamedQuery(name = "RealEstateBroker.findAll", query = "SELECT reb FROM RealEstateBroker reb"),
+		@NamedQuery(name = "RealEstateBroker.findByName", query = "SELECT reb FROM RealEstateBroker reb WHERE reb.name LIKE:name"),
+		@NamedQuery(name = "RealEstateBroker.findByBrokerAddress", query = "SELECT reb FROM RealEstateBroker reb WHERE reb.brokerAddress LIKE:brokerAddress"),
+		@NamedQuery(name = "RealEstateBroker.findByCity", query = "SELECT reb FROM RealEstateBroker reb WHERE reb.city LIKE:city"),
+		@NamedQuery(name = "RealEstateBroker.findByPhoneNr", query = "SELECT reb FROM RealEstateBroker reb WHERE reb.phoneNr LIKE:phoneNr"),
+		@NamedQuery(name = "RealEstateBroker.findByEmail", query = "SELECT reb FROM RealEstateBroker reb WHERE reb.email LIKE:email") })
 @Table(name = "RealEstateBroker")
 public class RealEstateBroker {
 
