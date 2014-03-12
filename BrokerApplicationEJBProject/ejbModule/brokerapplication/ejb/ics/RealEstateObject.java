@@ -5,9 +5,20 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
+@NamedQueries({
+@NamedQuery(name= "RealEstateObject.findAll",query="SELECT reo FROM RealEstateObject reo"),
+@NamedQuery(name= "RealEstateObject.findByAddress",query="SELECT reo FROM RealEstateObject reo WHERE reo.objAddress LIKE :objAddress"),
+@NamedQuery(name= "RealEstateObject.findByCity",query="SELECT reo FROM RealEstateObject reo WHERE reo.objCity LIKE :objCity"),
+@NamedQuery(name= "RealEstateObject.findByPrice",query="SELECT reo FROM RealEstateObject reo WHERE reo.objPrice LIKE :objPrice"),
+@NamedQuery(name= "RealEstateObject.findByObjArea",query="SELECT reo FROM RealEstateObject reo WHERE reo.objArea LIKE :objArea"),
+@NamedQuery(name= "RealEstateObject.findByObjRooms",query="SELECT reo FROM RealEstateObject reo WHERE reo.objRooms LIKE :objRooms"),
+@NamedQuery(name= "RealEstateObject.findByObjUnitType",query="SELECT reo FROM RealEstateObject reo WHERE reo.objUnitType LIKE :objUnitType")
+})
 @Table(name = "RealEstateObject")
 public class RealEstateObject {
 

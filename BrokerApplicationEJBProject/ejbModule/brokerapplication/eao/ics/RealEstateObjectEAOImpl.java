@@ -1,8 +1,11 @@
 package brokerapplication.eao.ics;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import brokerapplication.ejb.ics.RealEstateObject;
 
@@ -18,38 +21,99 @@ public class RealEstateObjectEAOImpl implements RealEstateObjectEAOLocal {
 	 * Default constructor.
 	 */
 	public RealEstateObjectEAOImpl() {
-		// TODO Auto-generated constructor stub
+
 	}
 
-	@Override
+	
 	public RealEstateObject findRealEstateObjectByObjNr(int objNr) {
-		// TODO Auto-generated method stub
 		return em.find(RealEstateObject.class, objNr);
 	}
-
-	@Override
+	
 	public RealEstateObject createRealEstateObject(
 			RealEstateObject realEstateObject) {
-		// TODO Auto-generated method stub
 		em.persist(realEstateObject);
 		return realEstateObject;
 	}
 
-	@Override
 	public RealEstateObject updateRealEstateObject(
 			RealEstateObject realEstateObject) {
-		// TODO Auto-generated method stub
 		em.merge(realEstateObject);
 		return realEstateObject;
 	}
 
-	@Override
+	
 	public void deleteRealEstateObject(int objNr) {
-		// TODO Auto-generated method stub
 		RealEstateObject reo = em.find(RealEstateObject.class, objNr);
 		if (reo != null) {
 			em.remove(reo);
 		}
+	}
+
+	public List<RealEstateObject> findAllRealEstateObjects() {
+		TypedQuery<RealEstateObject> query = em.createNamedQuery(
+				"RealEstateObject.findAll", RealEstateObject.class);
+		List<RealEstateObject> results = query.getResultList();
+		return results;
+	}
+
+	public List<RealEstateObject> findByAddressRealEstateObjects(String objAddress) {
+		TypedQuery<RealEstateObject> query = em.createNamedQuery(
+				"RealEstateObject.findByObjAddress", RealEstateObject.class);
+
+		query.setParameter("objAddress", objAddress);
+
+		List<RealEstateObject> results = query.getResultList();
+		return results;
+	}
+
+	public List<RealEstateObject> findByCityRealEstateObjects(String objCity) {
+		TypedQuery<RealEstateObject> query = em.createNamedQuery(
+				"RealEstateObject.findByObjCity", RealEstateObject.class);
+
+		query.setParameter("objCity", objCity);
+
+		List<RealEstateObject> results = query.getResultList();
+		return results;
+	}
+
+	public List<RealEstateObject> findByPriceRealEstateObjects(int objPrice) {
+		TypedQuery<RealEstateObject> query = em.createNamedQuery(
+				"RealEstateObject.findByObjPrice", RealEstateObject.class);
+
+		query.setParameter("objCity", objPrice);
+
+		List<RealEstateObject> results = query.getResultList();
+		return results;
+	}
+
+	public List<RealEstateObject> findByAreaRealEstateObjects(int objArea) {
+		TypedQuery<RealEstateObject> query = em.createNamedQuery(
+				"RealEstateObject.findByObjArea", RealEstateObject.class);
+
+		query.setParameter("objCity", objArea);
+
+		List<RealEstateObject> results = query.getResultList();
+		return results;
+	}
+
+	public List<RealEstateObject> findByRoomsRealEstateObjects(String objRooms) {
+		TypedQuery<RealEstateObject> query = em.createNamedQuery(
+				"RealEstateObject.findByObjRooms", RealEstateObject.class);
+
+		query.setParameter("objCity", objRooms);
+
+		List<RealEstateObject> results = query.getResultList();
+		return results;
+	}
+
+	public List<RealEstateObject> findByUnitTypeRealEstateObjects(String objUnitType) {
+		TypedQuery<RealEstateObject> query = em.createNamedQuery(
+				"RealEstateObject.findByUnitType", RealEstateObject.class);
+
+		query.setParameter("objCity", objUnitType);
+
+		List<RealEstateObject> results = query.getResultList();
+		return results;
 	}
 
 }
