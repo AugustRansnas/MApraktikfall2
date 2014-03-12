@@ -52,7 +52,7 @@ public class Facade implements FacadeLocal {
 	}
 	
 	public List<ObjectOwner> findAllObjectOwner() { 
-		 return ObjectOwnerEAO.findAll(); 
+		 return ObjectOwnerEAO.findAllObjectOwner(); 
 		 } 
 	
 	public List<ObjectOwner> findObjectOwnerByName(String name) { 

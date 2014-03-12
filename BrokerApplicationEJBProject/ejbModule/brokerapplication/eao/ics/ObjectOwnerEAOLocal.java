@@ -16,7 +16,7 @@ public interface ObjectOwnerEAOLocal {
 
 	public void deleteObjectOwner(String ownerSsnr);
 	
-	public List<ObjectOwner> findAll(); 
+	public List<ObjectOwner> findAllObjectOwner(); 
 	
 	public List<ObjectOwner> findByName(String name); 
 	

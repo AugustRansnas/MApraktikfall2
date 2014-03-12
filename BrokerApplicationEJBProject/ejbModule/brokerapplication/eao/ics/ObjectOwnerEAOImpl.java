@@ -45,7 +45,7 @@ public class ObjectOwnerEAOImpl implements ObjectOwnerEAOLocal {
     }
     
 
-    public List<ObjectOwner> findAll() { 
+    public List<ObjectOwner> findAllObjectOwner() { 
     TypedQuery<ObjectOwner> query = 
     em.createNamedQuery("ObjectOwner.findAll", ObjectOwner.class); 
     
