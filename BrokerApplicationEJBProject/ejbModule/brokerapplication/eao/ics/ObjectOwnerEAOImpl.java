@@ -1,8 +1,11 @@
 package brokerapplication.eao.ics;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import brokerapplication.ejb.ics.ObjectOwner;
 
@@ -40,4 +43,45 @@ public class ObjectOwnerEAOImpl implements ObjectOwnerEAOLocal {
     		em.remove(oo);
     	}
     }
+    
+
+    public List<ObjectOwner> findAll() { 
+    TypedQuery<ObjectOwner> query = 
+    em.createNamedQuery("ObjectOwner.findAll", ObjectOwner.class); 
+    
+    List<ObjectOwner> results = query.getResultList(); 
+    return results;
+    }
+    
+    public List<ObjectOwner> findByName(String name) { 
+    	 TypedQuery<ObjectOwner> query = 
+    	 em.createNamedQuery("ObjectOwner.findByAddress", ObjectOwner.class); 
+    	 
+    	 query.setParameter("name", name); 
+    	 
+    	 List<ObjectOwner> results = query.getResultList(); 
+    	 return results; 
+    	 }
+    
+    public List<ObjectOwner> findByPhoneNr(String phoneNr) { 
+    	 TypedQuery<ObjectOwner> query = 
+    	 em.createNamedQuery("ObjectOwner.findByPhoneNr", ObjectOwner.class); 
+    	 
+    	 query.setParameter("phoneNr", phoneNr); 
+    	 
+    	 List<ObjectOwner> results = query.getResultList(); 
+    	 return results; 
+    	 } 
+    
+    public List<ObjectOwner> findByEmail(String email) { 
+   	 TypedQuery<ObjectOwner> query = 
+   	 em.createNamedQuery("ObjectOwner.findByEmail", ObjectOwner.class); 
+   	 
+   	 query.setParameter("email", email); 
+   	 
+   	 List<ObjectOwner> results = query.getResultList(); 
+   	 return results; 
+   	 } 
+    
+
 }

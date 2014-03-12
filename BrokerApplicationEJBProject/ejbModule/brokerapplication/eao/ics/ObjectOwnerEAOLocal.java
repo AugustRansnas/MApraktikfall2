@@ -1,5 +1,7 @@
 package brokerapplication.eao.ics;
 
+import java.util.List;
+
 import javax.ejb.Local;
 
 import brokerapplication.ejb.ics.ObjectOwner;
@@ -13,4 +15,14 @@ public interface ObjectOwnerEAOLocal {
 	public ObjectOwner updateObjectOwner(ObjectOwner objectOwner);
 
 	public void deleteObjectOwner(String ownerSsnr);
+	
+	public List<ObjectOwner> findAll(); 
+	
+	public List<ObjectOwner> findByName(String name); 
+	
+	public List<ObjectOwner> findByPhoneNr(String phoneNr); 
+	
+	public List<ObjectOwner> findByEmail(String email); 
+
+
 }

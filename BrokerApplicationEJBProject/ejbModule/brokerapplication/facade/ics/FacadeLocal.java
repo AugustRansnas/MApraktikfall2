@@ -1,5 +1,7 @@
 package brokerapplication.facade.ics;
 
+import java.util.List;
+
 import javax.ejb.Local;
 
 import brokerapplication.ejb.ics.ObjectOwner;
@@ -16,6 +18,14 @@ public interface FacadeLocal {
 	public ObjectOwner updateObjectOwner(ObjectOwner objectOwner);
 
 	public void deleteObjectOwner(String ownerSsnr);
+
+	public List<ObjectOwner> findAllObjectOwner();
+
+	public List<ObjectOwner> findObjectOwnerByName(String name);
+
+	public List<ObjectOwner> findObjectOwnerByPhoneNr(String phoneNr);
+
+	public List<ObjectOwner> findObjectOwnerByEmail(String email);
 
 	// RealEstateObject
 	public RealEstateObject findRealEstateObjectByObjNr(int objNr);
@@ -36,4 +46,5 @@ public interface FacadeLocal {
 	public RealEstateBroker updateRealEstateBroker(RealEstateBroker reb);
 
 	public void deleteRealEstateBroker(String brokerSsnr);
+
 }

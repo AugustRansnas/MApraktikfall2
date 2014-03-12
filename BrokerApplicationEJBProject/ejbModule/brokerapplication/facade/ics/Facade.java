@@ -1,5 +1,7 @@
 package brokerapplication.facade.ics;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -22,6 +24,8 @@ public class Facade implements FacadeLocal {
 	private RealEstateObjectEAOLocal realEstateObjectEAO;
 	@EJB
 	private RealEstateBrokerEAOLocal realEstateBrokerEAO;
+	@EJB
+	private ObjectOwnerEAOLocal ObjectOwnerEAO;
 
 	/**
 	 * Default constructor.
@@ -46,6 +50,22 @@ public class Facade implements FacadeLocal {
 	public void deleteObjectOwner(String ownerSsnr) {
 		objectOwnerEAO.deleteObjectOwner(ownerSsnr);
 	}
+	
+	public List<ObjectOwner> findAllObjectOwner() { 
+		 return ObjectOwnerEAO.findAll(); 
+		 } 
+	
+	public List<ObjectOwner> findObjectOwnerByName(String name) { 
+		 return ObjectOwnerEAO.findByName(name); 
+		 } 
+	
+	public List<ObjectOwner> findObjectOwnerByPhoneNr(String phoneNr) { 
+		 return ObjectOwnerEAO.findByPhoneNr(phoneNr); 
+		 }
+	
+	public List<ObjectOwner> findObjectOwnerByEmail(String email) { 
+		 return ObjectOwnerEAO.findByEmail(email); 
+		 }
 
 	// RealEstateObject
 	public RealEstateObject findRealEstateObjectByObjNr(int objNr) {
@@ -82,4 +102,6 @@ public class Facade implements FacadeLocal {
 	public void deleteRealEstateBroker(String brokerSsnr) {
 		realEstateBrokerEAO.deleteRealEstateBroker(brokerSsnr);
 	}
+
+	
 }
