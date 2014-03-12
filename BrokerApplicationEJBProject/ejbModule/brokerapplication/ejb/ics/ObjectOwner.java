@@ -6,10 +6,18 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
+@NamedQueries({
+		@NamedQuery(name = "ObjectOwner.findAll", query = "SELECT e FROM ObjectOwner e"),
+		@NamedQuery(name = "ObjectOwner.findByName", query = "SELECT e FROM ObjectOwner e WHERE e.name LIKE :name"),
+		@NamedQuery(name = "ObjectOwner.findByPhoneNr", query = "SELECT e FROM ObjectOwner e WHERE e.phoneNr LIKE :phoneNr"),
+		@NamedQuery(name = "ObjectOwner.findByEmail", query = "SELECT e FROM ObjectOwner e WHERE e.email LIKE :email"),
+})
 @Table(name = "ObjectOwner")
 public class ObjectOwner {
 

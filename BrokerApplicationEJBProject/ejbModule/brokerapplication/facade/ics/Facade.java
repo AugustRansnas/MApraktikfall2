@@ -24,6 +24,8 @@ public class Facade implements FacadeLocal {
 	private RealEstateObjectEAOLocal realEstateObjectEAO;
 	@EJB
 	private RealEstateBrokerEAOLocal realEstateBrokerEAO;
+	@EJB
+	private ObjectOwnerEAOLocal ObjectOwnerEAO;
 
 	/**
 	 * Default constructor.
@@ -49,6 +51,22 @@ public class Facade implements FacadeLocal {
 		objectOwnerEAO.deleteObjectOwner(ownerSsnr);
 	}
 
+	public List<ObjectOwner> findAllObjectOwner() {
+		return ObjectOwnerEAO.findAllObjectOwner();
+	}
+
+	public List<ObjectOwner> findObjectOwnerByName(String name) {
+		return ObjectOwnerEAO.findByName(name);
+	}
+
+	public List<ObjectOwner> findObjectOwnerByPhoneNr(String phoneNr) {
+		return ObjectOwnerEAO.findByPhoneNr(phoneNr);
+	}
+
+	public List<ObjectOwner> findObjectOwnerByEmail(String email) {
+		return ObjectOwnerEAO.findByEmail(email);
+	}
+
 	// RealEstateObject
 	public RealEstateObject findRealEstateObjectByObjNr(int objNr) {
 		return realEstateObjectEAO.findRealEstateObjectByObjNr(objNr);
@@ -68,7 +86,7 @@ public class Facade implements FacadeLocal {
 		realEstateObjectEAO.deleteRealEstateObject(objNr);
 	}
 
-	//RealEstateBroker
+	// RealEstateBroker
 	public RealEstateBroker findRealEstateBrokerByBrokerSsnr(String brokerSsnr) {
 		return realEstateBrokerEAO.findRealEstateBrokerByBrokerSsnr(brokerSsnr);
 	}
@@ -86,7 +104,7 @@ public class Facade implements FacadeLocal {
 	}
 
 	public List<RealEstateBroker> findAllRealEstateBrokers() {
-		return realEstateBrokerEAO.findAllRealEstateBrokers();		
+		return realEstateBrokerEAO.findAllRealEstateBrokers();
 	}
 
 	public List<RealEstateBroker> findRealEstateBrokersByName(String name) {
@@ -108,4 +126,5 @@ public class Facade implements FacadeLocal {
 	public List<RealEstateBroker> findRealEstateBrokersByEmail(String email) {
 		return realEstateBrokerEAO.findRealEstateBrokersByEmail(email);
 	}
+
 }
