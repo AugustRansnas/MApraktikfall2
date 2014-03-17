@@ -12,5 +12,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="C:/Users/Marcus Jacobsson/workspace/hibernate-search-5.0.0.Alpha1/dist/hibernate-envers-4.1.4.Final.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

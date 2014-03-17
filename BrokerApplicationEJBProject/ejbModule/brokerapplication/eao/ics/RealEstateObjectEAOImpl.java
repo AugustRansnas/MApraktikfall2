@@ -1,4 +1,4 @@
-package brokerapplication.eao.ics;
+ package brokerapplication.eao.ics;
 
 import java.util.List;
 
@@ -80,7 +80,7 @@ public class RealEstateObjectEAOImpl implements RealEstateObjectEAOLocal {
 		TypedQuery<RealEstateObject> query = em.createNamedQuery(
 				"RealEstateObject.findByObjPrice", RealEstateObject.class);
 
-		query.setParameter("objCity", objPrice);
+		query.setParameter("objPrice", objPrice);
 
 		List<RealEstateObject> results = query.getResultList();
 		return results;
@@ -90,7 +90,7 @@ public class RealEstateObjectEAOImpl implements RealEstateObjectEAOLocal {
 		TypedQuery<RealEstateObject> query = em.createNamedQuery(
 				"RealEstateObject.findByObjArea", RealEstateObject.class);
 
-		query.setParameter("objCity", objArea);
+		query.setParameter("objArea", objArea);
 
 		List<RealEstateObject> results = query.getResultList();
 		return results;
@@ -100,7 +100,7 @@ public class RealEstateObjectEAOImpl implements RealEstateObjectEAOLocal {
 		TypedQuery<RealEstateObject> query = em.createNamedQuery(
 				"RealEstateObject.findByObjRooms", RealEstateObject.class);
 
-		query.setParameter("objCity", objRooms);
+		query.setParameter("objRooms", objRooms);
 
 		List<RealEstateObject> results = query.getResultList();
 		return results;
@@ -110,7 +110,7 @@ public class RealEstateObjectEAOImpl implements RealEstateObjectEAOLocal {
 		TypedQuery<RealEstateObject> query = em.createNamedQuery(
 				"RealEstateObject.findByUnitType", RealEstateObject.class);
 
-		query.setParameter("objCity", objUnitType);
+		query.setParameter("objUnitType", objUnitType);
 
 		List<RealEstateObject> results = query.getResultList();
 		return results;

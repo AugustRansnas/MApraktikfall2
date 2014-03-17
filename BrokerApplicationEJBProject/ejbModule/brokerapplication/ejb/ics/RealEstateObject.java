@@ -8,8 +8,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Version;
+
+import org.hibernate.envers.Audited;
 
 @Entity
+@Audited
 @NamedQueries({
 @NamedQuery(name= "RealEstateObject.findAll",query="SELECT reo FROM RealEstateObject reo"),
 @NamedQuery(name= "RealEstateObject.findByAddress",query="SELECT reo FROM RealEstateObject reo WHERE reo.objAddress LIKE :objAddress"),
@@ -30,6 +34,8 @@ public class RealEstateObject {
 	private String objRooms;
 	private String objUnitType;
 	private String objInfo;
+	@Version
+	private int version;
 	private ObjectOwner objectOwner; // Can only have one objectOwner
 	private RealEstateBroker realEstateBroker; // Can only have one responsible Broker
 
@@ -107,26 +113,6 @@ public class RealEstateObject {
 	public void setObjInfo(String objInfo) {
 		this.objInfo = objInfo;
 	}
-	
-	/*	ska ej vara med 
-	@Column(name = "brokerSsnr")
-	public String getBrokerSsnr() {
-		return brokerSsnr;
-	}
-
-	public void setBrokerSsnr(String brokerSsnr) {
-		this.brokerSsnr = brokerSsnr;
-	} */
-
-	/* ska ej vara med
-	@Column(name = "ownerSsnr")
-	public String getOwnerSsnr() {
-		return ownerSsnr;
-	}
-
-	public void setOwnerSsnr(String ownerSsnr) {
-		this.ownerSsnr = ownerSsnr;
-	}*/
 
 	@ManyToOne
 	@JoinColumn(name = "ownerSsnr", referencedColumnName = "ownerSsnr")
@@ -146,6 +132,15 @@ public class RealEstateObject {
 	
 	public void setRealEstateBroker(RealEstateBroker reb){
 		this.realEstateBroker = reb;
+	}
+
+	@Version
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 	
 }

@@ -85,39 +85,35 @@ public class Facade implements FacadeLocal {
 	public void deleteRealEstateObject(int objNr) {
 		realEstateObjectEAO.deleteRealEstateObject(objNr);
 	}
-	
-	
+
 	public List<RealEstateObject> findAllRealEstateObjects() {
 		return realEstateObjectEAO.findAllRealEstateObjects();
-		
+
 	}
 
-	
-	public List<RealEstateObject> findByAddressRealEstateObjects(String objAddress) {
+	public List<RealEstateObject> findByAddressRealEstateObjects(
+			String objAddress) {
 		return realEstateObjectEAO.findByAddressRealEstateObjects(objAddress);
 	}
 
-	
 	public List<RealEstateObject> findByCityRealEstateObjects(String objCity) {
 		return realEstateObjectEAO.findByCityRealEstateObjects(objCity);
 	}
 
-	
 	public List<RealEstateObject> findByPriceRealEstateObjects(int objPrice) {
 		return realEstateObjectEAO.findByPriceRealEstateObjects(objPrice);
 	}
 
-	
 	public List<RealEstateObject> findByAreaRealEstateObjects(int objArea) {
 		return realEstateObjectEAO.findByAreaRealEstateObjects(objArea);
 	}
 
-	
 	public List<RealEstateObject> findByRoomsRealEstateObjects(String objRooms) {
 		return realEstateObjectEAO.findByRoomsRealEstateObjects(objRooms);
 	}
 
-	public List<RealEstateObject> findByUnitTypeRealEstateObjects(String objUnitType) {
+	public List<RealEstateObject> findByUnitTypeRealEstateObjects(
+			String objUnitType) {
 		return realEstateObjectEAO.findByUnitTypeRealEstateObjects(objUnitType);
 	}
 

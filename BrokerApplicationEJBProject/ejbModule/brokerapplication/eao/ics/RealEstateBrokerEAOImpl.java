@@ -27,7 +27,7 @@ public class RealEstateBrokerEAOImpl implements RealEstateBrokerEAOLocal {
 	public RealEstateBroker findRealEstateBrokerByBrokerSsnr(String brokerSsnr) {
 		return em.find(RealEstateBroker.class, brokerSsnr);
 	}
-
+	
 	public RealEstateBroker createRealEstateBroker(RealEstateBroker reb) {
 		em.persist(reb);
 		return reb;
@@ -104,5 +104,7 @@ public class RealEstateBrokerEAOImpl implements RealEstateBrokerEAOLocal {
 		List<RealEstateBroker> results = query.getResultList();
 		return results;
 	}
-
+	
+	
+	
 }

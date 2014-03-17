@@ -51,18 +51,21 @@ public class BrokerApplicationServlet extends HttpServlet {
 
 		out.println("<h2>Skapa RealEstateBroker</h2>");
 
-		RealEstateBroker reb = new RealEstateBroker();
+		RealEstateBroker reb = facade.findRealEstateBrokerByBrokerSsnr("1");
+		
+		//RealEstateBroker reb = new RealEstateBroker();
 		reb.setBrokerAddress("Malmövägen 11");
-		reb.setBrokerSsnr("2");
-		reb.setCity("Eslö");
-		reb.setEmail("andreas.andreasson@hotmail.com");
-		reb.setName("Andreas Andreasson");
+		reb.setBrokerSsnr("1");
+		reb.setCity("Staffanstorp");
+		reb.setEmail("marcus.jacobsson@hotmail.com");
+		reb.setName("Marcus Jacobsson");
 		reb.setPhoneNr("0723726326");
 		reb.setPw("password");
 
+		//facade.updateRealEstateBroker(reb);
 		//facade.createRealEstateBroker(reb);
 	
-
+		
 		RealEstateBroker reb1 = facade.findRealEstateBrokerByBrokerSsnr("1");
 
 		out.print("<p>Skapade mäklare:  " + reb1.getName() + " </p>");
@@ -73,13 +76,13 @@ public class BrokerApplicationServlet extends HttpServlet {
 
 		ObjectOwner oo = new ObjectOwner();
 
-		oo.setOwnerSsnr("3");
+		oo.setOwnerSsnr("1");
 		oo.setEmail("email");
 		oo.setName("name");
 		oo.setPhoneNr("123");
 
 		//facade.createObjectOwner(oo);
-		ObjectOwner oo1 = facade.findObjectOwnerByOwnerSsnr("3");
+		ObjectOwner oo1 = facade.findObjectOwnerByOwnerSsnr("1");
 		
 		out.print("<p>Skapade ägare:  " + oo1.getName() + " </p>");
 		out.print("<p>Email:  " + oo1.getEmail() + " </p>");
@@ -97,7 +100,7 @@ public class BrokerApplicationServlet extends HttpServlet {
 		reo.setObjPrice(1000);
 		reo.setObjRooms("2");
 		reo.setObjUnitType("hus");
-		reo.setObjectOwner(facade.findObjectOwnerByOwnerSsnr("3"));
+		reo.setObjectOwner(facade.findObjectOwnerByOwnerSsnr("1"));
 		reo.setRealEstateBroker(facade.findRealEstateBrokerByBrokerSsnr("1"));
 
 		//facade.createRealEstateObject(reo);
@@ -108,7 +111,7 @@ public class BrokerApplicationServlet extends HttpServlet {
 		out.print("<p>Objektnummer:  " + reo.getObjNr() + " </p>");
 		
 		out.println("<h2>Testa queries</h2>");
-		
+		/*
 		//Hämta alla Brokers 
 		 List<RealEstateBroker> allRealEstateBrokers = facade.findAllRealEstateBrokers();
 		 //Skriv ut alla 
@@ -119,6 +122,7 @@ public class BrokerApplicationServlet extends HttpServlet {
 		 out.println(" - "+ reb2.getBrokerAddress()); 
 		 out.println(" - "+ reb2.getCity() +"</h4>"); 
 		 } 
+		*/
 		
 		out.println("</body></html>");
 

@@ -10,8 +10,12 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Version;
+
+import org.hibernate.envers.Audited;
 
 @Entity
+@Audited
 @NamedQueries({
 		@NamedQuery(name = "ObjectOwner.findAll", query = "SELECT e FROM ObjectOwner e"),
 		@NamedQuery(name = "ObjectOwner.findByName", query = "SELECT e FROM ObjectOwner e WHERE e.name LIKE :name"),
@@ -25,6 +29,8 @@ public class ObjectOwner {
 	private String name;
 	private String phoneNr;
 	private String email;
+	@Version
+	private int version;
 	private Set<RealEstateObject> realEstateObjects; // Object owner can have
 														// many Real Estate
 														// Objects
@@ -73,5 +79,14 @@ public class ObjectOwner {
 
 	public void setRealEstateObjects(Set<RealEstateObject> realEstateObjects) {
 		this.realEstateObjects = realEstateObjects;
+	}
+
+	@Version
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 }
