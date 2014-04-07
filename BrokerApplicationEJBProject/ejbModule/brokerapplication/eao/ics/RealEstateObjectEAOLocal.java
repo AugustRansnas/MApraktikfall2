@@ -17,11 +17,24 @@ public interface RealEstateObjectEAOLocal {
 			RealEstateObject realEstateObject);
 
 	public void deleteRealEstateObject(int objNr);
+
 	public List<RealEstateObject> findAllRealEstateObjects();
-	public List<RealEstateObject> findByAddressRealEstateObjects(String objAddress);
+
+	public List<RealEstateObject> findByAddressRealEstateObjects(
+			String objAddress);
+
 	public List<RealEstateObject> findByCityRealEstateObjects(String objCity);
+
 	public List<RealEstateObject> findByPriceRealEstateObjects(int objPrice);
+
 	public List<RealEstateObject> findByAreaRealEstateObjects(int objArea);
+
 	public List<RealEstateObject> findByRoomsRealEstateObjects(String objRooms);
-	public List<RealEstateObject> findByUnitTypeRealEstateObjects(String objUnitType);
+
+	public List<RealEstateObject> findByUnitTypeRealEstateObjects(
+			String objUnitType);
+
+	public List<RealEstateObject> findByObjectOwner(String ownerSsnr);
+
+	public List<RealEstateObject> findByObjectBroker(String brokerSsnr);
 }

@@ -29,8 +29,6 @@ public class ObjectOwner {
 	private String name;
 	private String phoneNr;
 	private String email;
-	@Version
-	private int version;
 	private Set<RealEstateObject> realEstateObjects; // Object owner can have
 														// many Real Estate
 														// Objects
@@ -81,12 +79,5 @@ public class ObjectOwner {
 		this.realEstateObjects = realEstateObjects;
 	}
 
-	@Version
-	public int getVersion() {
-		return version;
-	}
 
-	public void setVersion(int version) {
-		this.version = version;
-	}
 }

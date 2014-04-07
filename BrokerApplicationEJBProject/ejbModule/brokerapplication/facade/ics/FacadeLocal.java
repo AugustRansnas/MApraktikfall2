@@ -53,6 +53,10 @@ public interface FacadeLocal {
 
 	public List<RealEstateObject> findByUnitTypeRealEstateObjects(
 			String objUnitType);
+	
+	public List<RealEstateObject> findByObjectOwner(String ownerSsnr);
+	
+	public List<RealEstateObject> findByObjectBroker(String brokerSsnr);
 
 	// RealEstateBroker
 	public RealEstateBroker findRealEstateBrokerByBrokerSsnr(String brokerSsnr);

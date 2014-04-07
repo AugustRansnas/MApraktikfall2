@@ -5,6 +5,7 @@
 	<projects>
 		<project>BrokerApplicationEJBProject</project>
 		<project>BrokerApplicationClientProject</project>
+		<project>BrokerApplicationJUnitEETest</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

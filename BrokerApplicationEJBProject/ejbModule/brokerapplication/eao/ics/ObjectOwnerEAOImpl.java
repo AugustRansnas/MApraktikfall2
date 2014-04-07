@@ -55,7 +55,7 @@ public class ObjectOwnerEAOImpl implements ObjectOwnerEAOLocal {
 
 	public List<ObjectOwner> findByName(String name) {
 		TypedQuery<ObjectOwner> query = em.createNamedQuery(
-				"ObjectOwner.findByAddress", ObjectOwner.class);
+				"ObjectOwner.findByName", ObjectOwner.class);
 
 		query.setParameter("name", name);
 

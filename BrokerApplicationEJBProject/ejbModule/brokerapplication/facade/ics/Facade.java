@@ -116,6 +116,14 @@ public class Facade implements FacadeLocal {
 			String objUnitType) {
 		return realEstateObjectEAO.findByUnitTypeRealEstateObjects(objUnitType);
 	}
+	
+	public List<RealEstateObject> findByObjectBroker(String brokerSsnr){
+		return realEstateObjectEAO.findByObjectBroker(brokerSsnr);
+	}
+	
+	public List<RealEstateObject> findByObjectOwner(String ownerSsnr){
+		return realEstateObjectEAO.findByObjectOwner(ownerSsnr);
+	}
 
 	// RealEstateBroker
 	public RealEstateBroker findRealEstateBrokerByBrokerSsnr(String brokerSsnr) {
@@ -157,5 +165,7 @@ public class Facade implements FacadeLocal {
 	public List<RealEstateBroker> findRealEstateBrokersByEmail(String email) {
 		return realEstateBrokerEAO.findRealEstateBrokersByEmail(email);
 	}
+	
+	
 
 }

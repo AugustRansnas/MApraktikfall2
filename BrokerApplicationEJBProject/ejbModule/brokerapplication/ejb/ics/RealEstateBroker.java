@@ -19,7 +19,7 @@ import org.hibernate.envers.Audited;
 @NamedQueries({
 		@NamedQuery(name = "RealEstateBroker.findAll", query = "SELECT reb FROM RealEstateBroker reb"),
 		@NamedQuery(name = "RealEstateBroker.findByName", query = "SELECT reb FROM RealEstateBroker reb WHERE reb.name LIKE:name"),
-		@NamedQuery(name = "RealEstateBroker.findByBrokerAddress", query = "SELECT reb FROM RealEstateBroker reb WHERE reb.brokerAddress LIKE:brokerAddress"),
+		@NamedQuery(name = "RealEstateBroker.findByAddress", query = "SELECT reb FROM RealEstateBroker reb WHERE reb.brokerAddress LIKE:address"),
 		@NamedQuery(name = "RealEstateBroker.findByCity", query = "SELECT reb FROM RealEstateBroker reb WHERE reb.city LIKE:city"),
 		@NamedQuery(name = "RealEstateBroker.findByPhoneNr", query = "SELECT reb FROM RealEstateBroker reb WHERE reb.phoneNr LIKE:phoneNr"),
 		@NamedQuery(name = "RealEstateBroker.findByEmail", query = "SELECT reb FROM RealEstateBroker reb WHERE reb.email LIKE:email")})
@@ -33,8 +33,7 @@ public class RealEstateBroker {
 	private String phoneNr;
 	private String email;
 	private String pw;
-	@Version
-	private int version;
+
 	private Set<RealEstateObject> realEstateObjects; // RealEstateBroker can be
 														// responsible for many
 														// Objects
@@ -110,15 +109,6 @@ public class RealEstateBroker {
 
 	public void setRealEstateObjects(Set<RealEstateObject> realEstateObjects) {
 		this.realEstateObjects = realEstateObjects;
-	}
-
-	@Version
-	public int getVersion() {
-		return version;
-	}
-
-	public void setVersion(int version) {
-		this.version = version;
 	}
 
 }

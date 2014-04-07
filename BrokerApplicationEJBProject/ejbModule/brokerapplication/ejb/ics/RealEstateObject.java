@@ -1,4 +1,4 @@
-package brokerapplication.ejb.ics;
+	package brokerapplication.ejb.ics;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,12 +16,14 @@ import org.hibernate.envers.Audited;
 @Audited
 @NamedQueries({
 @NamedQuery(name= "RealEstateObject.findAll",query="SELECT reo FROM RealEstateObject reo"),
-@NamedQuery(name= "RealEstateObject.findByAddress",query="SELECT reo FROM RealEstateObject reo WHERE reo.objAddress LIKE :objAddress"),
-@NamedQuery(name= "RealEstateObject.findByCity",query="SELECT reo FROM RealEstateObject reo WHERE reo.objCity LIKE :objCity"),
-@NamedQuery(name= "RealEstateObject.findByPrice",query="SELECT reo FROM RealEstateObject reo WHERE reo.objPrice LIKE :objPrice"),
+@NamedQuery(name= "RealEstateObject.findByObjAddress",query="SELECT reo FROM RealEstateObject reo WHERE reo.objAddress LIKE :objAddress"),
+@NamedQuery(name= "RealEstateObject.findByObjCity",query="SELECT reo FROM RealEstateObject reo WHERE reo.objCity LIKE :objCity"),
+@NamedQuery(name= "RealEstateObject.findByObjPrice",query="SELECT reo FROM RealEstateObject reo WHERE reo.objPrice LIKE :objPrice"),
 @NamedQuery(name= "RealEstateObject.findByObjArea",query="SELECT reo FROM RealEstateObject reo WHERE reo.objArea LIKE :objArea"),
 @NamedQuery(name= "RealEstateObject.findByObjRooms",query="SELECT reo FROM RealEstateObject reo WHERE reo.objRooms LIKE :objRooms"),
-@NamedQuery(name= "RealEstateObject.findByObjUnitType",query="SELECT reo FROM RealEstateObject reo WHERE reo.objUnitType LIKE :objUnitType")
+@NamedQuery(name= "RealEstateObject.findByObjUnitType",query="SELECT reo FROM RealEstateObject reo WHERE reo.objUnitType LIKE :objUnitType"),
+@NamedQuery(name= "RealEstateObject.findByObjOwner",query="SELECT reo FROM RealEstateObject reo WHERE reo.objectOwner LIKE :objectOwner"),
+@NamedQuery(name= "RealEstateObject.findByObjBroker",query="SELECT reo FROM RealEstateObject reo WHERE reo.realEstateBroker LIKE :realEstateBroker")
 })
 @Table(name = "RealEstateObject")
 public class RealEstateObject {
@@ -34,12 +36,9 @@ public class RealEstateObject {
 	private String objRooms;
 	private String objUnitType;
 	private String objInfo;
-	@Version
-	private int version;
+	private String objImage;
 	private ObjectOwner objectOwner; // Can only have one objectOwner
 	private RealEstateBroker realEstateBroker; // Can only have one responsible Broker
-
-	// private byte[] image;
 
 	@Id
 	@Column(name = "objNr")
@@ -113,6 +112,8 @@ public class RealEstateObject {
 	public void setObjInfo(String objInfo) {
 		this.objInfo = objInfo;
 	}
+	
+	
 
 	@ManyToOne
 	@JoinColumn(name = "ownerSsnr", referencedColumnName = "ownerSsnr")
@@ -134,13 +135,15 @@ public class RealEstateObject {
 		this.realEstateBroker = reb;
 	}
 
-	@Version
-	public int getVersion() {
-		return version;
+	@Column(name = "objImage")
+	public String getObjImage() {
+		return objImage;
 	}
 
-	public void setVersion(int version) {
-		this.version = version;
+	public void setObjImage(String objImage) {
+		this.objImage = objImage;
 	}
+
+	
 	
 }

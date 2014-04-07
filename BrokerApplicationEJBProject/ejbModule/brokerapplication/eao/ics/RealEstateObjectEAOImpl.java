@@ -1,4 +1,4 @@
- package brokerapplication.eao.ics;
+package brokerapplication.eao.ics;
 
 import java.util.List;
 
@@ -7,6 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import brokerapplication.ejb.ics.ObjectOwner;
+import brokerapplication.ejb.ics.RealEstateBroker;
 import brokerapplication.ejb.ics.RealEstateObject;
 
 /**
@@ -24,11 +26,10 @@ public class RealEstateObjectEAOImpl implements RealEstateObjectEAOLocal {
 
 	}
 
-	
 	public RealEstateObject findRealEstateObjectByObjNr(int objNr) {
 		return em.find(RealEstateObject.class, objNr);
 	}
-	
+
 	public RealEstateObject createRealEstateObject(
 			RealEstateObject realEstateObject) {
 		em.persist(realEstateObject);
@@ -41,7 +42,6 @@ public class RealEstateObjectEAOImpl implements RealEstateObjectEAOLocal {
 		return realEstateObject;
 	}
 
-	
 	public void deleteRealEstateObject(int objNr) {
 		RealEstateObject reo = em.find(RealEstateObject.class, objNr);
 		if (reo != null) {
@@ -56,7 +56,8 @@ public class RealEstateObjectEAOImpl implements RealEstateObjectEAOLocal {
 		return results;
 	}
 
-	public List<RealEstateObject> findByAddressRealEstateObjects(String objAddress) {
+	public List<RealEstateObject> findByAddressRealEstateObjects(
+			String objAddress) {
 		TypedQuery<RealEstateObject> query = em.createNamedQuery(
 				"RealEstateObject.findByObjAddress", RealEstateObject.class);
 
@@ -106,9 +107,10 @@ public class RealEstateObjectEAOImpl implements RealEstateObjectEAOLocal {
 		return results;
 	}
 
-	public List<RealEstateObject> findByUnitTypeRealEstateObjects(String objUnitType) {
+	public List<RealEstateObject> findByUnitTypeRealEstateObjects(
+			String objUnitType) {
 		TypedQuery<RealEstateObject> query = em.createNamedQuery(
-				"RealEstateObject.findByUnitType", RealEstateObject.class);
+				"RealEstateObject.findByObjUnitType", RealEstateObject.class);
 
 		query.setParameter("objUnitType", objUnitType);
 
@@ -116,4 +118,34 @@ public class RealEstateObjectEAOImpl implements RealEstateObjectEAOLocal {
 		return results;
 	}
 
+	public List<RealEstateObject> findByObjectOwner(String ownerSsnr) {
+
+		ObjectOwner oo = em.find(ObjectOwner.class, ownerSsnr);
+		if (oo != null) {
+			TypedQuery<RealEstateObject> query = em.createNamedQuery(
+					"RealEstateObject.findByObjOwner", RealEstateObject.class);
+
+			query.setParameter("objectOwner", oo);
+			List<RealEstateObject> results = query.getResultList();
+			return results;
+		}
+		return null;
+
+	}
+
+	public List<RealEstateObject> findByObjectBroker(String brokerSsnr) {
+		
+		RealEstateBroker reb = em.find(RealEstateBroker.class, brokerSsnr);
+			
+		if(reb != null){
+			TypedQuery<RealEstateObject> query = em.createNamedQuery(
+					"RealEstateObject.findByObjBroker", RealEstateObject.class);
+
+			query.setParameter("realEstateBroker", reb);
+
+			List<RealEstateObject> results = query.getResultList();
+			return results;
+		}
+		return null;		
+	}
 }
